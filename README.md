@@ -72,7 +72,7 @@ Allows you to specify how your data file is delimited. This defaults to tab but 
   -s --separator=<sep>
   
 ##### Specify category field in data file
-Determines which field in your data file is used when drawing colored pies in the haplotype plot. May be specified as an index (1-based) or a field name.  
+Determines which field in your data file is used when drawing colored pies in the haplotype plot. The default value for this is a field called 'region'. May be specified as an index (1-based) or a field name.  
 **option:**  
   -f --field=<field>
 

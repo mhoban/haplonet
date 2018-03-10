@@ -25,6 +25,7 @@ TACCAGA
 ```
 
 Example data file:
+
 id | marker | region | country
 --- | ---- | ---- | ----
 seq1 | coi | northwest | Kiribati
@@ -49,16 +50,65 @@ After a bit of tweaking, the new plot may look something like this:
 
 ![rearranged haplotype network](../assets/network2.png?raw=true)
 
+Detailed command-line options
+------------------------------
+```bash
 Usage:
-  haplonet.r [--separator=<sep>] [--filter=<filter>] [--order-categories=<cats>] [--field=<field>] [--output=<file>] [(--legend --legend-position=<pos> [--save-legend])] [--haplotype-labels] <alignment> <datafile>
+  haplonet.r 
+    [--separator=<sep>] 
+    [--filter=<filter>] 
+    [--order-categories=<cats>] 
+    [--field=<field>] 
+    [--output=<file>] 
+    [(--legend --legend-position=<pos> [--save-legend])] 
+    [--haplotype-labels] 
+    <alignment> <datafile>  
+ ```
+  
+##### Specify data file delimiter
+Allows you to specify how your data file is delimited. This defaults to tab but you can pass any character or string that is supported by the `read.table` function in R.  
+**option:**  
+  -s --separator=<sep>
+  
+##### Specify category field in data file
+Determines which field in your data file is used when drawing colored pies in the haplotype plot. May be specified as an index (1-based) or a field name.  
+**option:**  
+  -f --field=<field>
 
-### Options:  
-  -s --separator=<sep>  Data file field separator [default: tab]  
-  -f --field=<field>  Category field in data file [default: region]  
-  -t --filter=<filter>  Filter taxa by pattern  
-  -c --order-categories=<cats>  Specify category order (fmt: x,x,x,x)  
-  -o --output=<file>  Output file prefix [default: hapnet]  
-  -l --legend  Print a legend  
-  -p --legend-position=<pos>  Legend position [default: topleft]  
-  -v --save-legend  Optional second file to save legend by itself  
-  -h --haplotype-labels  Display haplotype labels"  
+##### Manually reorder category levels
+Different levels of data categories are by default shown in alphabetical order. To rearrange them, use this option. Pass a comma-separated list of your category levels in the order you would like them to appear. For this to work, you must pass all of the category levels.  
+**option:**  
+  -c --order-categories=<cats>  (fmt: x,x,x,x)  
+  
+##### Specify output file prefix
+Set the prefix for output filenames. The default is hapnet, but you can set it to whatever.  
+**option:**  
+  -o --output=<file>
+  
+##### Plot a legend
+This option allows you to create a legend for your haplotype network. There are a few options that may or may not be required at the same time:  
+**options:**  
+  -l --legend  Specify that you want a legend  
+  -p --legend-position=<pos>  Specify the position of the legend (accepts any argument that the R function `legend`'s position argument accepts)  
+  -v --save-legend  Draws the legend to a separate file (often useful so it doesn't overdraw your haplotype plot)
+  
+##### Plot haplotype labels
+This option is more for debugging purposes, but it plots labels for each haplotype. These typically occur as Roman numerals.  
+**option:**  
+-h --haplotype-labels
+
+Script output
+-------------
+haplotype.r produces three possible different output files.
+
+##### Haplotype plot
+Once you have finished rearranging your haplotype plot and right-click on the window, the plot is saved as a PDF with the name <prefix>_plot.pdf.
+  
+##### R data objects
+haplotype.r will save the R data objects it used while calculating and plotting the haplotype network. The objects saved are:
+ - categories: a factor variable of the categories used to color haplotype pies
+ - hap: the haplotypes themselves
+ - hap.net: the haplotype network object
+ - hap.pies: an object that determines pie chart divisions/colors when plotting
+ - pal: the color palette (by default generated based on one of Beyoncé's outfits
+ - plottr: the data object returned from `replot`, which stores where all the haplotype pies are once you've rearranged them (so you don't have to rearrange them again if you want to plot it again).

@@ -28,7 +28,6 @@ if (opt[['separator']] == "tab" || opt[['separator']] == "\\t") {
 cat("loading libraries (can take a sec)...\n")
 suppressMessages(library(dplyr))
 suppressMessages(library(pegas))
-suppressMessages(library(poppr))
 require(beyonce,quiet=T)
 
 # color palette

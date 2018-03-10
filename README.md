@@ -45,7 +45,7 @@ If everything worked properly, you should get a graphics window popping up with 
 
 ![initial haplotype network](../assets/network1.png?raw=true)
 
-This window has popped up in *interactive* mode, allowing you to rearrange the various haplotypes until the plot looks good. To do this, simply click on a haplotype, then click where you want it to end up. Once you're done doing this, right-click somewhere on the plot and it will close and save to a PDF called by default haplonet_plot.pdf. 
+This window has popped up in *interactive* mode, allowing you to rearrange the various haplotypes until the plot looks good. To do this, simply click on a haplotype, then click where you want it to end up. Once you're done doing this, right-click somewhere on the plot and it will close and save to a PDF called by default hapnet_plot.pdf. 
 
 After a bit of tweaking, the new plot may look something like this:
 

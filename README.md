@@ -1,6 +1,6 @@
 haplonet.r: a terminal-based R script for plotting haplotype networks
 =======================================================================
-
+haplotype.r is a command-line R script for generating haplotype network plots with minimum fuss. It was written on a Mac and as-such probably only works on a Mac, but you're welcome to try it on other platforms. I wrote this because I often found there was a maximum of fuss when doing this and I wanted a more general-case, easy-to-use thing. It works great for me, I hope it works great for you.
 
 Quick start
 --------------

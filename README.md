@@ -92,11 +92,11 @@ Set the prefix for output filenames. The default is hapnet, but you can set it t
   -o --output=<file>
   
 ##### Plot a legend
-This option allows you to create a legend for your haplotype network. There are a few options that may or may not be required at the same time:  
+This option allows you to create a legend for your haplotype network. Right now, there's not a lot of customization available, but you can always customize to your heart's content using the R data objects saved by the script. There are a few options that may or may not be required at the same time:  
 **options:**  
   -l --legend  Specify that you want a legend  
-  -p --legend-position=<pos>  Specify the position of the legend (accepts any argument that the R function `legend`'s position argument accepts)  
-  -v --save-legend  Draws the legend to a separate file (often useful so it doesn't overdraw your haplotype plot)
+  -p --legend-position=<pos>  Specify the position of the legend (accepts any argument that the R function `legend`'s position argument accepts). If you want a legend, this option is also required.  
+  -v --save-legend  Draws the legend to a separate file called <prefix>_legend.pdf (often useful so it doesn't overdraw your haplotype plot)
   
 ##### Plot haplotype labels
 This option is more for debugging purposes, but it plots labels for each haplotype. These typically occur as Roman numerals.  
@@ -109,6 +109,9 @@ haplotype.r produces three possible different output files.
 
 ##### Haplotype plot
 Once you have finished rearranging your haplotype plot and right-click on the window, the plot is saved as a PDF with the name <prefix>_plot.pdf.
+  
+##### Legend
+If you've chosen to plot a legend separately, you'll get another PDF called <prefix>_legend.pdf that contains your figure lenged by itself. You can then add this back into your haplotype plot in Illustrator or whatever.
   
 ##### R data objects
 haplotype.r will save the R data objects it used while calculating and plotting the haplotype network. The objects saved are:

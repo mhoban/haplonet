@@ -77,8 +77,8 @@ Determines which field in your data file is used when drawing colored pies in th
   -f --field=<field>
   
 ##### Filter sequences/data by search pattern
-This option allows you to subset sequences by a search pattern. For example, if your alignment/data file contains more than one species and you want to generate a network comprising a single species, this is the option for you. There are two ways to do this. If you pass a search pattern (regular expressions are supported) as-is, the script will filter the sequences by *sequence identifier*. If you pass a string or integer, followed by a colon, followed by a search patttern (e.g. "species:vanderbilti"), it will treat the word or number *before* the colon as the data column it should filter and the pattern *after* the color as the search criteria. Thus, passing `--filter=Cvd` would search sequence ID's for the string 'Cvd', whereas `--filter=species:vanderbilti` would search the column called **species** in the data file for the string 'vanderbilti'. The bit before the colon may also be a number, which specifies the (1-based) index of the data column you want to filter.
-**option:**
+This option allows you to subset sequences by a search pattern. For example, if your alignment/data file contains more than one species and you want to generate a network comprising a single species, this is the option for you. There are two ways to do this. If you pass a search pattern (regular expressions are supported) as-is, the script will filter the sequences by *sequence identifier*. If you pass a string or integer, followed by a colon, followed by a search patttern (e.g. "species:vanderbilti"), it will treat the word or number *before* the colon as the data column it should filter and the pattern *after* the color as the search criteria. Thus, passing `--filter=Cvd` would search sequence ID's for the string 'Cvd', whereas `--filter=species:vanderbilti` would search the column called **species** in the data file for the string 'vanderbilti'. The bit before the colon may also be a number, which specifies the (1-based) index of the data column you want to filter.  
+**option:**  
   -t --filter=<filter>  
 
 ##### Manually reorder category levels
@@ -118,3 +118,11 @@ haplotype.r will save the R data objects it used while calculating and plotting 
  - hap.pies: an object that determines pie chart divisions/colors when plotting
  - pal: the color palette (by default generated based on one of Beyoncé's outfits
  - plottr: the data object returned from `replot`, which stores where all the haplotype pies are once you've rearranged them (so you don't have to rearrange them again if you want to plot it again).
+
+Limitations
+------------
+There are a few things this script *doesn't* do as well as a couple of quirks it has. 
+
+ - Unlike [NETWORK](http://www.fluxus-engineering.com/sharenet.htm), this script will not create circular networks
+ - It will not show missing/inferred haplotypes
+ - When drawing tickmarks on links for mutation steps, the script always draws the tickmark in the *center* of the link (as determined by the line between centers of the circles). This means that if you have a particularly large circle next to a small one, the tickmark may disappear inside the larger circle unless you drag the smaller one a fair distance away. In this example image, you can see some of the smaller haplotypes at their default distance with hidden tickmarks as well as some dragged far enough away for the tickmarks to be seen. ![link ticks bug](../assets/netlinks.png?raw=true)

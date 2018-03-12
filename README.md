@@ -75,6 +75,11 @@ Allows you to specify how your data file is delimited. This defaults to tab but 
 Determines which field in your data file is used when drawing colored pies in the haplotype plot. The default value for this is a field called 'region'. May be specified as an index (1-based) or a field name.  
 **option:**  
   -f --field=<field>
+  
+##### Filter sequences/data by search pattern
+This option allows you to subset sequences by a search pattern. For example, if your alignment/data file contains more than one species and you want to generate a network comprising a single species, this is the option for you. There are two ways to do this. If you pass a search pattern (regular expressions are supported) as-is, the script will filter the sequences by *sequence identifier*. If you pass a string or integer, followed by a colon, followed by a search patttern (e.g. "species:vanderbilti"), it will treat the word or number *before* the colon as the data column it should filter and the pattern *after* the color as the search criteria. Thus, passing `--filter=Cvd` would search sequence ID's for the string 'Cvd', whereas `--filter=species:vanderbilti` would search the column called **species** in the data file for the string 'vanderbilti'. The bit before the colon may also be a number, which specifies the (1-based) index of the data column you want to filter.
+**option:**
+  -t --filter=<filter>  
 
 ##### Manually reorder category levels
 Different levels of data categories are by default shown in alphabetical order. To rearrange them, use this option. Pass a comma-separated list of your category levels in the order you would like them to appear. For this to work, you must pass all of the category levels.  

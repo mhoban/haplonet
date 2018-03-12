@@ -36,7 +36,7 @@ seq3 | coi | east | Kiribati
 
 The order of sequences in either the data or alignment files is not important as the script associates samples by sequence identifier.
 
-So, with a sequence alignment of a one species and a data file describing (say) where they were sampled, you'd do:
+So, with a sequence alignment of one species and a data file describing (say) where they were sampled, you'd do:
 
 ```bash
 $ ./haplonet.r alignment.fasta data.tab

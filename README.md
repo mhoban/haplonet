@@ -10,6 +10,7 @@ haplonet.r relies upon the following dependencies:
 - [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html)
 - [pegas](https://cran.r-project.org/web/packages/pegas/index.html)
 - [beyonce](https://github.com/dill/beyonce) (This last is required as-written for color palette generation, but the script can easily be re-tooled for other color palettes. For more R color packages, see [here](https://github.com/EmilHvitfeldt/r-color-palettes))
+- [docopt](https://github.com/docopt/docopt.R)
 
 Currently, haplonet.r is written using the [quartz](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Quartz-device) graphics device, which limits it to Mac systems, but subsequent versions may support other devices.
 

@@ -62,27 +62,31 @@ samples <- read.table(opt[['datafile']],header=T,sep=opt[['separator']])
 
 # filter alignment if requested to do so
 if (!is.null(opt[['filter']])) {
+  # try to split filter string by ':'
   filter <- strsplit(opt[['filter']],':')[[1]]
   if (length(filter) == 1) {
+    # if there was no ':' in there, filter sequence labels by given criteria
     alignment <- alignment[grep(filter,labels(alignment)),]  
   } else if (length(filter) == 2) {
+    # if there was one, the first part is the column to filter and the second part is the criteria
     column <- filter[1]
     criteria <- filter[2]
     ids <- samples[grep(criteria,samples[,column]),'id']
     alignment <- alignment[labels(alignment) %in% ids,]
   }
-  
 }
 
+# make sure our sample metadata matches our alignment
 samples <- samples %>% filter(id %in% labels(alignment))
-# extract the group (category) identifiers (why?)
-# group.ids <- samples[,field]
 
 # relimit factor levels after filtering (since all those text fields are interpreted as factors)
-fctr <- sapply(samples,is.factor)
-samples[fctr] <- lapply(samples[fctr],factor)
+# if we don't do this, legends will look screwy
+samples <- droplevels(samples);
+# fctr <- sapply(samples,is.factor)
+# samples[fctr] <- lapply(samples[fctr],factor)
 
-# redo the row names of the samples table, just for fun
+# redo the row names of the samples table, so they show up in order
+# otherwise, the haplotype table will be screwy
 rownames(samples) <- 1:nrow(samples)
 
 # make the data table be in the same order as the aligment (or everything breaks)
@@ -99,14 +103,16 @@ hap <- haplotype(alignment)
 hap.net <- haploNet(hap)
 
 # do some magic with the row names and categories that I figured out a while ago 
-# but no longer entirely understand the code
+# but no longer entirely understand how it works. Essentially, this gives a table
+# with haplotypes and their frequencies by category so you can do the color-coded
+# pies for each haplotype in the plot.
 hap.pies <- with(
   stack(setNames(attr(hap,'index'),1:length(attr(hap,'index')))),
   table(hap=as.numeric(as.character(ind)),pop=samples[values,field])
 )
 rownames(hap.pies) <- rownames(hap)
 
-# reorder categories if directed
+# reorder categories if directed, so your legend looks nice
 if (is.character(opt[['order-categories']])) {
   if (grepl('^[0-9]+(,[0-9]+)*$',opt[['order-categories']])) {
     newlevels <- as.numeric(strsplit(opt[['order-categories']],",")[[1]])
@@ -116,6 +122,7 @@ if (is.character(opt[['order-categories']])) {
   }
 }
 
+# get Beyonce palette number 18 with the appropriate number of colors
 pal <- beyonce_palette(18,ncol(hap.pies),type = "continuous")
 
 # plot the thing
@@ -128,8 +135,10 @@ par(cex=1)
 plot(hap.net, size=attr(hap.net, "freq")*0.2, bg=pal,
      scale.ratio = 0.2, cex = 1, labels=opt[['haplotype-labels']],
      pie=hap.pies, font=2, fast=F, legend=F, show.mutation=T,threshold=0)
+# replot puts the plot into interactive mode, allowing you to rearrange the haplotypes so it looks nice
 plottr <- replot()
 
+# if we want a legend, draw a legend
 categories <- colnames(hap.pies)
 if (opt[['legend']]) {
   legend.position <- opt[['legend-position']]
@@ -137,11 +146,14 @@ if (opt[['legend']]) {
     legend(x=legend.position,legend=categories,fill=pal,bty="n",cex=1.2,ncol=2)
   }
 }
+# save all the necessary R data objects
 save(pal,plottr,hap.net,hap.pies,hap,categories,file=paste(c(opt[['output']],'.data'),collapse=""))
 
+# save the plot
 quartz.save(file=paste(c(opt[['output']],'_plot','.pdf'),collapse=""),type="pdf")
 dev.off()
 
+# plot and save the legend if directed to do so
 if (opt[['legend']] && opt[['save-legend']]) {
   outf <- paste(c(opt[['output']],'_legend','.pdf'),collapse="")
   pdf(outf)

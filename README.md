@@ -69,34 +69,34 @@ Usage:
 ##### Specify data file delimiter
 Allows you to specify how your data file is delimited. This defaults to tab but you can pass any character or string that is supported by the `read.table` function in R.  
 **option:**  
-  -s --separator=<sep>
+  -s --separator=&lt;sep&gt;
   
 ##### Specify category field in data file
 Determines which field in your data file is used when drawing colored pies in the haplotype plot. The default value for this is a field called 'region'. May be specified as an index (1-based) or a field name.  
 **option:**  
-  -f --field=<field>
+  -f --field=&lt;field&gt;
   
 ##### Filter sequences/data by search pattern
 This option allows you to subset sequences by a search pattern. For example, if your alignment/data file contains more than one species and you want to generate a network comprising a single species, this is the option for you. There are two ways to do this. If you pass a search pattern (regular expressions are supported) as-is, the script will filter the sequences by *sequence identifier*. If you pass a string or integer, followed by a colon, followed by a search patttern (e.g. "species:vanderbilti"), it will treat the word or number *before* the colon as the data column it should filter and the pattern *after* the color as the search criteria. Thus, passing `--filter=Cvd` would search sequence ID's for the string 'Cvd', whereas `--filter=species:vanderbilti` would search the column called **species** in the data file for the string 'vanderbilti'. The bit before the colon may also be a number, which specifies the (1-based) index of the data column you want to filter.  
 **option:**  
-  -t --filter=<filter>  
+  -t --filter=&lt;filter&gt;  
 
 ##### Manually reorder category levels
 Different levels of data categories are by default shown in alphabetical order. To rearrange them, use this option. Pass a comma-separated list of your category levels in the order you would like them to appear. For this to work, you must pass all of the category levels.  
 **option:**  
-  -c --order-categories=<cats>  (fmt: x,x,x,x)  
+  -c --order-categories=&lt;cats&gt;  (fmt: x,x,x,x)  
   
 ##### Specify output file prefix
 Set the prefix for output filenames. The default is hapnet, but you can set it to whatever.  
 **option:**  
-  -o --output=<file>
+  -o --output=&lt;file&gt;
   
 ##### Plot a legend
 This option allows you to create a legend for your haplotype network. Right now, there's not a lot of customization available, but you can always customize to your heart's content using the R data objects saved by the script. There are a few options that may or may not be required at the same time:  
 **options:**  
   -l --legend  Specify that you want a legend  
-  -p --legend-position=<pos>  Specify the position of the legend (accepts any argument that the R function `legend`'s position argument accepts). If you want a legend, this option is also required.  
-  -v --save-legend  Draws the legend to a separate file called <prefix>_legend.pdf (often useful so it doesn't overdraw your haplotype plot)
+  -p --legend-position=&lt;pos&gt;  Specify the position of the legend (accepts any argument that the R function `legend`'s position argument accepts). If you want a legend, this option is also required.  
+  -v --save-legend  Draws the legend to a separate file called &lt;prefix&gt;_legend.pdf (often useful so it doesn't overdraw your haplotype plot)
   
 ##### Plot haplotype labels
 This option is more for debugging purposes, but it plots labels for each haplotype. These typically occur as Roman numerals.  
@@ -108,10 +108,10 @@ Script output
 haplotype.r produces three possible different output files.
 
 ##### Haplotype plot
-Once you have finished rearranging your haplotype plot and right-click on the window, the plot is saved as a PDF with the name <prefix>_plot.pdf.
+Once you have finished rearranging your haplotype plot and right-click on the window, the plot is saved as a PDF with the name &lt;prefix&gt;_plot.pdf.
   
 ##### Legend
-If you've chosen to plot a legend separately, you'll get another PDF called <prefix>_legend.pdf that contains your figure lenged by itself. You can then add this back into your haplotype plot in Illustrator or whatever.
+If you've chosen to plot a legend separately, you'll get another PDF called &lt;prefix&gt;_legend.pdf that contains your figure lenged by itself. You can then add this back into your haplotype plot in Illustrator or whatever.
   
 ##### R data objects
 haplotype.r will save the R data objects it used while calculating and plotting the haplotype network. The objects saved are:

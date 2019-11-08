@@ -124,7 +124,7 @@ haplotype.r will save the R data objects it used while calculating and plotting 
  - pal: the color palette (by default generated based on one of Beyoncé's outfits)
  - plottr: the data object returned from `replot`, which stores where all the haplotype pies are once you've rearranged them (so you don't have to rearrange them again if you want to plot it again).
 
-Limitations
+Limitations (this section is now out of date, since I modified the pegas library to fix this issue, but I'm leaving it in for posterity)
 ------------
 There are a few things this script *doesn't* do as well as a couple of quirks it has. 
 

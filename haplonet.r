@@ -1,5 +1,10 @@
 #!/usr/bin/env littler
 
+
+# NOTE: this script relies on a customized version of the pegas library
+# to install it, uncomment the following:
+# devtools::install_github("mhoban/pegas")
+
 options(warn=-1)
 suppressMessages(library(docopt))
 # Parse command line options using magic docopt package

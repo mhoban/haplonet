@@ -10,7 +10,7 @@ Quick start
 haplonet.r relies upon the following dependencies:  
 - [littler](http://dirk.eddelbuettel.com/code/littler.html) (specifically, you need an executable called **littler** in your path for this to work. On my system, the [homebrew](https://brew.sh/) version of littler did the trick, but if you install it some other way, just note that you'll have to rename the executable, make a link to the original that's called littler, or change the hashbang line in the script itself.)
 - [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html)
-- [pegas](https://cran.r-project.org/web/packages/pegas/index.html)
+- [pegas](https://cran.r-project.org/web/packages/pegas/index.html), or alternatively, use [my modified version of pegas](https://github.com/mhoban/pegas) to overcome the issue (mentioned at the bottom of this document) where mutation tick marks are incorrectly displayed on haplotype links.
 - [beyonce](https://github.com/dill/beyonce) (This last is required as-written for color palette generation, but the script can easily be re-tooled for other color palettes. For more R color packages, see [here](https://github.com/EmilHvitfeldt/r-color-palettes))
 
 - [docopt](https://github.com/docopt/docopt.R)

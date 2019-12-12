@@ -59,15 +59,20 @@ Detailed command-line options
 ------------------------------
 ```bash
 Usage:
-  haplonet.r 
-    [--separator=<sep>] 
-    [--filter=<filter>] 
-    [--order-categories=<cats>] 
-    [--field=<field>] 
-    [--output=<file>] 
-    [(--legend --legend-position=<pos> [--save-legend])] 
-    [--haplotype-labels] 
-    <alignment> <datafile>  
+  haplonet.r [--separator=<sep>] [--filter=<filter>] [--order-categories=<cats>] [--field=<field>] [--output=<file>] [(--legend --legend-position=<pos> [--save-legend])] [--haplotype-labels] [--big-palette] [--dump] <alignment> <datafile>
+
+Options:
+  -s --separator=<sep>  Data file field separator [default: tab]
+  -f --field=<field>  Category field in data file [default: region]
+  -t --filter=<filter>  Filter taxa by pattern
+  -c --order-categories=<cats>  Specify category order (fmt: x,x,x,x)
+  -o --output=<file>  Output file prefix [default: hapnet]
+  -l --legend  Print a legend
+  -p --legend-position=<pos>  Legend position [default: topleft]
+  -v --save-legend  Optional second file to save legend by itself
+  -h --haplotype-labels  Display haplotype labels
+  -b --big-palette  Use large color palette for many categories
+  -d --dump  Dump the options for debugging
  ```
   
 ##### Specify data file delimiter

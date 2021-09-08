@@ -38,7 +38,7 @@ cat("loading libraries (can take a sec)...\n")
 suppressMessages(library(dplyr))
 suppressMessages(library(stringr))
 suppressMessages(library(pegas))
-require(beyonce,quiet=T)
+# require(beyonce,quiet=T)
 
 # big color palette
 pal_269 <- c( "#000000", "#FFFF00", "#1CE6FF", "#FF34FF", "#FF4A46", "#008941", "#006FA6", "#A30059",
@@ -169,11 +169,11 @@ if (is.character(opt[['order-categories']])) {
 }
 
 # get Beyonce palette number 18 with the appropriate number of colors
-if (opt[["big-palette"]]) {
+# if (opt[["big_palette"]]) {
   pal <- pal_269
-} else {
-  pal <- beyonce_palette(18,ncol(hap.pies),type = "continuous")  
-}
+# } else {
+  # pal <- beyonce_palette(18,ncol(hap.pies),type = "continuous")  
+# }
 if (length(pal) > ncol(hap.pies)) {
   pal <- pal[1:ncol(hap.pies)]
 }
@@ -186,8 +186,8 @@ f <- quartz(bg="white")
 par(cex=1)
 # plot the haplotype network
 plot(hap.net, size=attr(hap.net, "freq")*0.2, bg=pal,
-     scale.ratio = 0.2, cex = 1, labels=opt[['haplotype-labels']],
-     pie=hap.pies, font=2, fast=F, legend=F, show.mutation=1,threshold=0,show.single=F)
+     scale.ratio = 0.2, cex = 1, labels=opt[['haplotype_labels']],
+     pie=hap.pies, font=2, fast=F, legend=F, show.mutation=1,threshold=0)
 # replot puts the plot into interactive mode, allowing you to rearrange the haplotypes so it looks nice
 plottr <- replot()
 
@@ -203,7 +203,7 @@ if (field2 != "") {
 }
 if (opt[['legend']]) {
   legend.position <- opt[['legend-position']]
-  if (!opt[['save-legend']]) {
+  if (!opt[['save_legend']]) {
     legend(x=legend.position,legend=categories,fill=pal,bty="n",cex=1.2,ncol=2)
   }
 }
@@ -215,7 +215,7 @@ quartz.save(file=paste(c(opt[['output']],'_plot','.pdf'),collapse=""),type="pdf"
 dev.off()
 
 # plot and save the legend if directed to do so
-if (opt[['legend']] && opt[['save-legend']]) {
+if (opt[['legend']] && opt[['save_legend']]) {
   outf <- paste(c(opt[['output']],'_legend','.pdf'),collapse="")
   #pdf(outf)
   quartz(type="pdf",file=outf)
